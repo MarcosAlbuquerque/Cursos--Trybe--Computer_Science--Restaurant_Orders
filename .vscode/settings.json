@@ -1,0 +1,13 @@
+{
+  "python.linting.flake8Enabled": true,
+  "python.linting.enabled": true,
+  "editor.renderLineHighlight": "all",
+  "editor.renderFinalNewline": true,
+  "editor.minimap.renderCharacters": true,
+  "editor.renderLineHighlightOnlyWhenFocus": true,
+  "editor.renderWhitespace": "trailing",
+  "markdown.preview.breaks": true,
+  "debug.allowBreakpointsEverywhere": false,
+  "debug.showBreakpointsInOverviewRuler": false,
+  "html.format.preserveNewLines": true
+}
