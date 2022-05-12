@@ -61,7 +61,8 @@ def append_maria(i):
 
 def append_arnaldo(i):
     if i[0][0] == 'arnaldo':
-            arnaldo.append((i[1], i[0][1]))
+        arnaldo.append((i[1], i[0][1]))
+
 
 def write_file(file_mkt):
     with open(file_mkt, 'a') as file:
