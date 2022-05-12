@@ -30,18 +30,7 @@ def read_file(path_to_file):
         order = csv.DictReader(file, fieldnames)
 
         separate_order(order)
-
-        for i in order_counter.items():
-            if i[0][0] == 'maria':
-                maria.append((i[1], i[0][1]))
-
-            if i[0][0] == 'arnaldo':
-                arnaldo.append((i[1], i[0][1]))
-
-            if i[0][0] == 'joao':
-                for j, v in order_counter.items():
-                    if j[1] != i[0][1]:
-                        joao.add(j[1])
+        counted_order()
 
 
 def separate_order(order):
@@ -51,6 +40,20 @@ def separate_order(order):
 
         if i['cliente'] == 'joao':
             joao_days.add(i['dia'])
+
+
+def counted_order():
+    for i in order_counter.items():
+        if i[0][0] == 'maria':
+            maria.append((i[1], i[0][1]))
+
+        if i[0][0] == 'arnaldo':
+            arnaldo.append((i[1], i[0][1]))
+
+        if i[0][0] == 'joao':
+            for j, v in order_counter.items():
+                if j[1] != i[0][1]:
+                    joao.add(j[1])
 
 
 def write_file():
