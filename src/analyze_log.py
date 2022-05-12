@@ -18,6 +18,7 @@ def analyze_log(path_to_file):
 
 def verify_file(path_to_file):
     errorExtension = path_to_file[len(path_to_file) - 12:]
+
     if errorExtension[-3:] != 'csv':
         raise FileNotFoundError(f"Extensão inválida: \'{path_to_file}\'")
     if errorExtension != 'orders_1.csv':
@@ -70,6 +71,3 @@ def write_file(file_mkt):
         file.write(f"{joao}\n")
         file.write(f"{set(days_jobs.difference(joao_days))}")
         file.close()
-
-
-# analyze_log('data/orders_1.csv')
