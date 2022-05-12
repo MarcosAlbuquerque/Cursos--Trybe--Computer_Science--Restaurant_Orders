@@ -1,18 +1,19 @@
 from collections import defaultdict
 import csv
 
+order_counter = defaultdict(int)
+file_mkt = 'data/mkt_campaign.txt'
 arnaldo = []
 maria = []
 joao = set()
 joao_days = set()
 days_jobs = set()
-order_counter = defaultdict(int)
 
 
 def analyze_log(path_to_file):
     verify_file(path_to_file)
     read_file(path_to_file)
-    write_file()
+    write_file(file_mkt)
 
 
 def verify_file(path_to_file):
@@ -44,11 +45,8 @@ def separate_order(order):
 
 def counted_order():
     for i in order_counter.items():
-        if i[0][0] == 'maria':
-            maria.append((i[1], i[0][1]))
-
-        if i[0][0] == 'arnaldo':
-            arnaldo.append((i[1], i[0][1]))
+        append_maria(i)
+        append_arnaldo(i)
 
         if i[0][0] == 'joao':
             for j, v in order_counter.items():
@@ -56,8 +54,17 @@ def counted_order():
                     joao.add(j[1])
 
 
-def write_file():
-    with open('data/mkt_campaign.txt', 'a') as file:
+def append_maria(i):
+    if i[0][0] == 'maria':
+        maria.append((i[1], i[0][1]))
+
+
+def append_arnaldo(i):
+    if i[0][0] == 'arnaldo':
+            arnaldo.append((i[1], i[0][1]))
+
+def write_file(file_mkt):
+    with open(file_mkt, 'a') as file:
         file.write(f"{max(maria)[1]}\n")
         file.write(f"{arnaldo[1][0]}\n")
         file.write(f"{joao}\n")
