@@ -44,19 +44,18 @@ class TrackOrders:
         return(prato_nao_pedido)
 
     def get_days_never_visited_per_customer(self, customer):
-        # dias_visitados = set()
-        # dias_da_semana = set()
+        dias_visitados = set()
+        dias_da_semana = set()
 
-        # for i in self.cliente_pedidos:
-        #     if i[2] not in 'domingo':
-        #         dias_da_semana.add(i[2])
+        for i in self.cliente_pedidos:
+            if i[2] not in 'domingo':
+                dias_da_semana.add(i[2])
 
-        #     if i[0] == customer:
-        #         dias_visitados.add(i[2])
+            if i[0] == customer:
+                dias_visitados.add(i[2])
 
-        # dias_nao_visitados = dias_da_semana.difference(dias_visitados)
-        # return dias_nao_visitados
-        ...
+        dias_nao_visitados = dias_da_semana.difference(dias_visitados)
+        return dias_nao_visitados
 
     def get_busiest_day(self):
         pass
