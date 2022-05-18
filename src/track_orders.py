@@ -71,6 +71,13 @@ class TrackOrders:
         return dias_agitados[max(dias_agitados)]
 
     def get_least_busy_day(self):
-        pass
+        dias_contados = defaultdict(int)
+        dias_agitados = dict()
 
-    # print(cliente_pedidos)
+        for i in self.cliente_pedidos:
+            dias_contados[i[2]] += 1
+
+        for i, v in dias_contados.items():
+            dias_agitados.update({v: i})
+
+        return dias_agitados[min(dias_agitados)]
