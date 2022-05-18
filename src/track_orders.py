@@ -5,10 +5,10 @@ class TrackOrders:
     # aqui deve expor a quantidade de estoque
     total_pedidos = 0
     cliente_pedidos = []
-    prato_favorito = defaultdict(int)
 
     def __init__(self):
         self.total_pedidos
+        self.cliente_pedidos.clear()
 
     def __len__(cls):
         return cls.total_pedidos
@@ -18,13 +18,14 @@ class TrackOrders:
         self.cliente_pedidos.append((customer, order, day))
 
     def get_most_ordered_dish_per_customer(self, customer):
+        prato_favorito = defaultdict(int)
         conta_pratos = []
 
         for i in self.cliente_pedidos:
             if i[0] == customer:
-                self.prato_favorito[i[1]] += 1
+                prato_favorito[i[1]] += 1
 
-        for i in self.prato_favorito.items():
+        for i in prato_favorito.items():
             conta_pratos.append(i)
 
         return conta_pratos[1][0]
@@ -58,7 +59,16 @@ class TrackOrders:
         return dias_nao_visitados
 
     def get_busiest_day(self):
-        pass
+        dias_contados = defaultdict(int)
+        dias_agitados = dict()
+
+        for i in self.cliente_pedidos:
+            dias_contados[i[2]] += 1
+
+        for i, v in dias_contados.items():
+            dias_agitados.update({v: i})
+
+        return dias_agitados[max(dias_agitados)]
 
     def get_least_busy_day(self):
         pass
