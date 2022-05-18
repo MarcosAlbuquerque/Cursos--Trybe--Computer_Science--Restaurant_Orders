@@ -4,9 +4,6 @@ from collections import defaultdict
 class TrackOrders:
     # aqui deve expor a quantidade de estoque
     total_pedidos = 0
-    dias_semana = ('segunda-feira', 'terça-feira', 'quarta-feira',
-                   'quinta-feira', 'sexta-feira', 'sábado', 'domingo')
-
     cliente_pedidos = []
     prato_favorito = defaultdict(int)
 
@@ -33,10 +30,33 @@ class TrackOrders:
         return conta_pratos[1][0]
 
     def get_never_ordered_per_customer(self, customer):
-        pass
+        todos_pratos = set()
+        prato_pedido = set()
+
+        for i in self.cliente_pedidos:
+            if i[1] not in 'frango':
+                todos_pratos.add(i[1])
+
+            if i[0] == customer:
+                prato_pedido.add(i[1])
+
+        prato_nao_pedido = todos_pratos.difference(prato_pedido)
+        return(prato_nao_pedido)
 
     def get_days_never_visited_per_customer(self, customer):
-        pass
+        # dias_visitados = set()
+        # dias_da_semana = set()
+
+        # for i in self.cliente_pedidos:
+        #     if i[2] not in 'domingo':
+        #         dias_da_semana.add(i[2])
+
+        #     if i[0] == customer:
+        #         dias_visitados.add(i[2])
+
+        # dias_nao_visitados = dias_da_semana.difference(dias_visitados)
+        # return dias_nao_visitados
+        ...
 
     def get_busiest_day(self):
         pass
