@@ -1,3 +1,6 @@
+from collections import defaultdict
+
+
 class InventoryControl:
     INGREDIENTS = {
         'hamburguer': ['pao', 'carne', 'queijo'],
@@ -15,11 +18,33 @@ class InventoryControl:
         'frango': 50,
     }
 
+    ingredientes_solicitados = defaultdict(int)
+    novo_pedido = {}
+
     def __init__(self):
-        pass
+        self.ingredientes_solicitados.clear()
+        self.ingredientes_solicitados = {
+            'pao': 0,
+            'carne': 0,
+            'queijo': 0,
+            'molho': 0,
+            'presunto': 0,
+            'massa': 0,
+            'frango': 0,
+        }
 
     def add_new_order(self, customer, order, day):
-        pass
+        for i in self.INGREDIENTS[order]:
+            self.ingredientes_solicitados[i] += 1
+
+        for i, v in self.ingredientes_solicitados.items():
+            self.novo_pedido[i] = v
+
+        # print('\n' + 'Resultado' + '\n')
 
     def get_quantities_to_buy(self):
-        pass
+        for i, v in self.ingredientes_solicitados.items():
+            if v > 50:
+                return 1
+
+        return self.novo_pedido
