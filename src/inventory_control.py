@@ -38,13 +38,17 @@ class InventoryControl:
             self.ingredientes_solicitados[i] += 1
 
         for i, v in self.ingredientes_solicitados.items():
+            if v > self.MINIMUM_INVENTORY[i]:
+                return False
             self.novo_pedido[i] = v
 
         # print('\n' + 'Resultado' + '\n')
 
     def get_quantities_to_buy(self):
+        return self.novo_pedido
+
+    def get_available_dishes(self):
         for i, v in self.ingredientes_solicitados.items():
             if v > 50:
-                return 1
-
-        return self.novo_pedido
+                return False
+        # ...
